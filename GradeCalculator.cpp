@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
+template<typename T> void printItem(T t, const int& width) {
+        cout << left << setw(width) << setfill(' ') << t;
+    }
+
 int main() {
+    
     const int maxItems = 30;
     double numberItems[maxItems][2];
 
@@ -30,23 +36,47 @@ int main() {
     for (int n = 0; n < userCourses; n++) {
         cout << "Enter the value for item " << n + 1 << ": ";
         cin >> itemValue;
-        numberItems[n][1] = itemValue;
+        numberItems[n][0] = itemValue;
         cout << "Enter the grade for item " << n + 1 << ": ";
         cin >> itemGrade;
-        numberItems[n][2] = itemGrade;
+        numberItems[n][1] = itemGrade;
     }
 
-    for (int x = 0; x <= 14; x++) {
-        cout << "-";
-    }
-    cout << endl << "Value" << "  |  " << "Grade" << endl;
-    for (int x = 0; x <= 14; x++) {
-        cout << "-";
-    }
+    double courseMark = 0;
+    double totalCourseMarks = 0;
+    double value = 0;
+    double totalValue = 0;
 
     for (int n = 0; n < userCourses; n++) {
-        cout << endl << numberItems[n][1] << "  |  " << numberItems[n][2] << endl;
+        value = numberItems[n][0];
+        totalValue += value;
+        courseMark = numberItems[n][1];
+        totalCourseMarks += courseMark;
     }
+    cout << "Total value: " << totalValue << endl;
+    cout << "Total course marks: " << totalCourseMarks << endl;
+    
+    double average = totalCourseMarks / totalValue;
+
+    cout << endl;
+
+    printItem("Course Number", 20);
+    for (int n = 0; n < userCourses; n++) {
+        printItem(n + 1, 8);
+    }
+    cout << endl;
+    printItem("Value", 20);
+    for (int n = 0; n < userCourses; n++) {
+        printItem(numberItems[n][0], 8);
+    }
+    cout << endl;
+    printItem("Grade", 20);
+    for (int n = 0; n < userCourses; n++) {
+        printItem(numberItems[n][1], 8);
+    }
+    cout << endl;
+
+    cout << "Course average: " << average;
 
     return 0;
 }
