@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>
+#include "intro.h"
 
 using namespace std;
 
@@ -10,29 +11,35 @@ template<typename T> void printItem(T t, const int& width) { // template functio
 
 int main() {
     
+    const int starLength = 80;
     const int maxItems = 30; // constant variable for max course items allowed
     double numberItems[maxItems][2]; // 2D array of type double to store grades and their corresponding worth
-
-    for (int i = 0; i <= 80; i++) { // beginning of printing of intro
-        cout << "*";
-    }
-
-    cout << endl; 
-    cout << "This program will calculate your grade for a single course for up to 30 items." << endl
-        << "Currently, the program will not save any information to your computer, however," << endl
-        << "future updates are coming with improvements such as adding names and saving." << endl;
     
-    for (int i = 0; i <= 80; i++) {
-        cout << "*";
-    } // end of printing of intro
+    gc::displayStars(starLength);
+    gc::displayIntroText();
+    gc::displayStars(starLength);
 
-    cout << endl << endl;
+    // for (int i = 0; i <= 80; i++) { // beginning of printing of intro
+    //     cout << "*";
+    // }
+
+    // cout << endl; 
+    // cout << "This program will calculate your grade for a single course for up to 30 items." << endl
+    //     << "Currently, the program will not save any information to your computer, however," << endl
+    //     << "future updates are coming with improvements such as adding names and saving." << endl;
+    
+    // for (int i = 0; i <= 80; i++) {
+    //     cout << "*";
+    // } // end of printing of intro
+
+    cout << endl;
     cout << ">>How many course items do you want to calculate for?: "; // prompt user for number of items
     int userCourses = 0; 
     cin >> userCourses; // stored in userCourses
 
     double itemweight = 0; // creation and storing of item weights and grades depending on how many items user requested
     double itemGrade = 0;
+    
     for (int n = 0; n < userCourses; n++) {
         cout << "Enter the weight for item (%) " << n + 1 << ": ";
         cin >> itemweight;
@@ -48,7 +55,6 @@ int main() {
     double totalWeight = 0; // sum of all weights
     double weightEarned = 0; // weight of item earned
     double totalWeightEarned = 0; // sum of all weights earned
-    double sumWeightEarned = 0;
 
     for (int n = 0; n < userCourses; n++) {
         weight = numberItems[n][0]; // weight set to weight set by user
@@ -57,14 +63,13 @@ int main() {
         totalItemMarks += itemMark; // itemMark added to totalItemMarks
         weightEarned = itemMark * (weight / 100); // weightEarned calculated by using mark as the percentage of the weight of the item
         totalWeightEarned += weightEarned; // weightEarned added to totalWeightEarned
-        // sumWeightEarned += (weight * itemMark); // the sum of the products of the mark and it's weight
     }
 
-    totalWeight = totalWeight/100;
+    totalWeight = totalWeight / 100;
 
-    cout << "Total weight (%): " << totalWeight << endl; // for debugging purposes
-    cout << "Total course marks: " << totalItemMarks << endl;
-    cout << "Total weight earned: " << totalWeightEarned << endl;
+    // cout << "Total weight (%): " << totalWeight << endl; // for debugging purposes
+    // cout << "Total course marks: " << totalItemMarks << endl;
+    // cout << "Total weight earned: " << totalWeightEarned << endl;
     
     double average = totalWeightEarned / totalWeight; // calculating the final average
 
