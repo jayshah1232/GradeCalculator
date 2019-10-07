@@ -19,19 +19,6 @@ int main() {
     gc::displayIntroText();
     gc::displayStars(starLength);
 
-    // for (int i = 0; i <= 80; i++) { // beginning of printing of intro
-    //     cout << "*";
-    // }
-
-    // cout << endl; 
-    // cout << "This program will calculate your grade for a single course for up to 30 items." << endl
-    //     << "Currently, the program will not save any information to your computer, however," << endl
-    //     << "future updates are coming with improvements such as adding names and saving." << endl;
-    
-    // for (int i = 0; i <= 80; i++) {
-    //     cout << "*";
-    // } // end of printing of intro
-
     cout << endl;
     cout << ">>How many course items do you want to calculate for?: "; // prompt user for number of items
     int userCourses = 0; 
